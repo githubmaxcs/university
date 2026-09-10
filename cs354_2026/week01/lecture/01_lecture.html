@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc 3.10.1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Gary Dahl" />
+  <title>CS354w01 - Introduction to Course, Bash, and C</title>
+  <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: 1.5em;}
+    div.column{flex: auto;}
+    @media screen {
+    div.columns{gap: min(4vw, 1.5em);}
+    div.column{overflow-x: auto;}
+    }
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { color: #008000; } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { color: #008000; font-weight: bold; } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="../style.css" />
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">CS354w01 - Introduction to Course, Bash, and C</h1>
+<p class="author">Gary Dahl</p>
+</header>
+<h1 id="learning-plan">Learning Plan</h1>
+<h2 id="motivation">Motivation</h2>
+<h2 id="course-introduction">Course Introduction</h2>
+<h2 id="bash-introduction-cs-linux-machines">Bash Introduction (CS Linux
+Machines)</h2>
+<h2 id="c-introduction-probably-next-week">C Introduction (probably next
+week)</h2>
+<h1 id="motivation-cs300-review">Motivation (CS300 Review)</h1>
+<h2
+id="cs300-review-suppose-we-run-insert-and-then-displaysum-on-same-list">CS300
+Review: Suppose we run insert, and then displaySum on same list:</h2>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode java"><code class="sourceCode java"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">insert</span><span class="op">(</span><span class="bu">List</span><span class="op">&lt;</span><span class="bu">Integer</span><span class="op">&gt;</span> list<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span><span class="op">(</span><span class="dt">int</span> i<span class="op">=</span><span class="dv">0</span><span class="op">;</span>i<span class="op">&lt;</span>Main<span class="op">.</span><span class="fu">BIG_SIZE</span><span class="op">;</span>i<span class="op">++)</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  list<span class="op">.</span><span class="fu">add</span><span class="op">(</span><span class="dv">0</span><span class="op">,</span>i<span class="op">);</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">displaySum</span><span class="op">(</span><span class="bu">List</span><span class="op">&lt;</span><span class="bu">Integer</span><span class="op">&gt;</span> list<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> sum <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span><span class="op">(</span><span class="dt">int</span> i<span class="op">=</span><span class="dv">0</span><span class="op">;</span>i<span class="op">&lt;</span>Main<span class="op">.</span><span class="fu">BIG_SIZE</span><span class="op">;</span>i<span class="op">++)</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  sum <span class="op">+=</span> list<span class="op">.</span><span class="fu">get</span><span class="op">(</span>i<span class="op">);</span> </span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<h2
+id="which-do-you-expect-to-run-faster-and-most-importantly-why">Which do
+you expect to run faster? And most importantly, why?</h2>
+<h1 id="motivation-cs300-test">Motivation (CS300 Test)</h1>
+<div class="sourceCode" id="cb2" data-noweb="yes"><pre
+class="sourceCode java"><code class="sourceCode java"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">import</span> <span class="im">java</span><span class="op">.</span><span class="im">util</span><span class="op">.</span><span class="im">List</span><span class="op">;</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="kw">public</span> <span class="kw">class</span> Main <span class="op">{</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">insert</span><span class="op">(</span><span class="bu">List</span><span class="op">&lt;</span><span class="bu">Integer</span><span class="op">&gt;</span> list<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span><span class="op">(</span><span class="dt">int</span> i<span class="op">=</span><span class="dv">0</span><span class="op">;</span>i<span class="op">&lt;</span>Main<span class="op">.</span><span class="fu">BIG_SIZE</span><span class="op">;</span>i<span class="op">++)</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>      list<span class="op">.</span><span class="fu">add</span><span class="op">(</span><span class="dv">0</span><span class="op">,</span>i<span class="op">);</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    <span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">displaySum</span><span class="op">(</span><span class="bu">List</span><span class="op">&lt;</span><span class="bu">Integer</span><span class="op">&gt;</span> list<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  <span class="dt">int</span> sum <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span><span class="op">(</span><span class="dt">int</span> i<span class="op">=</span><span class="dv">0</span><span class="op">;</span>i<span class="op">&lt;</span>Main<span class="op">.</span><span class="fu">BIG_SIZE</span><span class="op">;</span>i<span class="op">++)</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>      sum <span class="op">+=</span> list<span class="op">.</span><span class="fu">get</span><span class="op">(</span>i<span class="op">);</span> </span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>    <span class="kw">public</span> <span class="dt">static</span> <span class="dt">int</span> BIG_SIZE <span class="op">=</span> <span class="dv">99999</span><span class="op">;</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>    <span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">test</span><span class="op">(</span><span class="bu">List</span><span class="op">&lt;</span><span class="bu">Integer</span><span class="op">&gt;</span> list<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>        <span class="dt">long</span> start <span class="op">=</span> <span class="bu">System</span><span class="op">.</span><span class="fu">nanoTime</span><span class="op">();</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>        Main<span class="op">.</span><span class="fu">insert</span><span class="op">(</span>list<span class="op">);</span></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>        <span class="dt">long</span> mid <span class="op">=</span> <span class="bu">System</span><span class="op">.</span><span class="fu">nanoTime</span><span class="op">();</span></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>        Main<span class="op">.</span><span class="fu">displaySum</span><span class="op">(</span>list<span class="op">);</span></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>        <span class="dt">long</span> end <span class="op">=</span> <span class="bu">System</span><span class="op">.</span><span class="fu">nanoTime</span><span class="op">();</span></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>        <span class="bu">System</span><span class="op">.</span><span class="fu">out</span><span class="op">.</span><span class="fu">println</span><span class="op">(</span>list<span class="op">.</span><span class="fu">getClass</span><span class="op">().</span><span class="fu">getName</span><span class="op">());</span></span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>        <span class="bu">System</span><span class="op">.</span><span class="fu">out</span><span class="op">.</span><span class="fu">println</span><span class="op">(</span><span class="st">&quot;insert(): &quot;</span><span class="op">+(</span>mid<span class="op">-</span>start<span class="op">)/(</span><span class="dt">double</span><span class="op">)</span>BIG_SIZE<span class="op">);</span></span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>        <span class="bu">System</span><span class="op">.</span><span class="fu">out</span><span class="op">.</span><span class="fu">println</span><span class="op">(</span><span class="st">&quot;displaySum(): &quot;</span><span class="op">+(</span>end<span class="op">-</span>mid<span class="op">)/(</span><span class="dt">double</span><span class="op">)</span>BIG_SIZE<span class="op">);</span></span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>    <span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">main</span><span class="op">(</span><span class="bu">String</span><span class="op">[]</span> args<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<h1 id="motivation-other-abstractions-in-play">Motivation (Other
+Abstractions in Play)</h1>
+<h2 id="source-code-.java-is-compiled-into-byte-code-.class">Source Code
+(.java) is compiled into Byte Code (.class)</h2>
+<h2 id="byte-code-.class-is-run-through-java-virtual-machine">Byte Code
+(.class) is run through Java Virtual Machine</h2>
+<h2
+id="java-virtual-machine-itself-a-program-compiled-from-cc-source">Java
+Virtual Machine itself a program compiled from C/C++ source</h2>
+<h2
+id="jit-compiler-optimization-compiles-byte-code-into-machine-code">JIT
+Compiler (optimization) compiles byte code into machine code</h2>
+<h2 id="machine-code-runs-on-cpu-with-help-of-operating-system">Machine
+Code runs on CPU (with Help of Operating System)</h2>
+<h2 id="pros">Pros:</h2>
+<h2 id="cons">Cons:</h2>
+<h1 id="motivation-1">Motivation</h1>
+<h2
+id="why-is-it-worth-our-effort-to-learn-about-these-abstractions">Why is
+it worth our effort to learn about these abstractions?</h2>
+<h1 id="course-introduction-what">Course Introduction (What)</h1>
+<h2 id="unit-1-introduction-to-bash-and-c-programming">Unit 1:
+Introduction to Bash and C Programming</h2>
+<h2 id="unit-2-pointers-and-virtual-memory">Unit 2: Pointers and Virtual
+Memory</h2>
+<h2 id="unit-3-dynamic-memory-allocators">Unit 3: Dynamic Memory
+Allocators</h2>
+<h2 id="unit-4-cache-design-and-simulations">Unit 4: Cache Design and
+Simulations</h2>
+<h2 id="unit-5-x86-64-assembly-mostly-reading">Unit 5: x86-64 Assembly
+(mostly reading)</h2>
+<h2 id="unit-6-signals-and-exceptions">Unit 6: Signals and
+Exceptions</h2>
+<h2 id="unit6-elf-files-linking-and-loading">Unit6+: ELF Files (Linking
+and Loading)</h2>
+<h1 id="course-introduction-how">Course Introduction (How)</h1>
+<h2 id="readings-and-resources">Readings and Resources</h2>
+<h2 id="lecture-examples-and-clarifications">Lecture Examples and
+Clarifications</h2>
+<h2 id="exercises-through-two-chance-canvas-quizzes">Exercises (through
+two-chance Canvas quizzes)</h2>
+<h2 id="programming-projects-through-gradescope">Programming Projects
+(through Gradescope)</h2>
+<h2 id="unit-quizzes-through-cbef">Unit Quizzes (through CBEF)</h2>
+<h2 id="final-exam">Final Exam</h2>
+<h1 id="course-introduction-help">Course Introduction (Help)</h1>
+<h2 id="canvas-homepage-schedule-assessments-recordings-outlines">Canvas
+Homepage (Schedule, Assessments, Recordings, Outlines)</h2>
+<h2 id="policies-and-grades-including-flexibility">Policies and Grades
+(including Flexibility)</h2>
+<h2
+id="learning-support-piazza-office-hours-and-more-resources">Learning
+Support: Piazza, Office Hours, and More Resources</h2>
+<h1 id="bash-introduction-connecting-to-cs-linux-machines">Bash
+Introduction (Connecting to CS Linux Machines)</h1>
+<h2 id="use-windows-r-on-windows-or-command-space-on-mac">Use Windows-R
+(on Windows) or Command-Space (on Mac)</h2>
+<h2 id="type-the-command-terminal-and-submit-with-enterreturn">Type the
+command terminal, and submit with Enter/Return</h2>
+<h2
+id="connect-with-the-command-ssh-csuserbest-linux.cs.wisc.edu">Connect
+with the command ```ssh CSUSER@best-linux.cs.wisc.edu```</h2>
+<h2 id="do-as-much-work-as-youd-like-on-this-machine">Do as much work as
+you'd like on this machine</h2>
+<h2 id="use-the-command-exit-to-disconnect-when-you-are-done.">Use the
+command ```exit``` to disconnect, when you are done.</h2>
+<h2
+id="the-files-in-your-home-directory-will-persist-when-you-next-login">The
+files in your home directory (~) will persist, when you next login</h2>
+<h1 id="bash-introduction-navigate-and-view-filesystem">Bash
+Introduction (Navigate and View Filesystem)</h1>
+<h2 id="pwd---print-working-directory">pwd - Print Working
+Directory</h2>
+<h2 id="ls---list-including-with-common-arguments-like--l--a">ls - LiSt
+(including with common arguments like -l -a)</h2>
+<h2 id="cd---change-directory">cd - Change Directory</h2>
+<h2 id="cat---concatenate">cat - conCATenate</h2>
+<h2 id="tree">tree</h2>
+<h1 id="bash-introduction-create-new-files-and-directories">Bash
+Introduction (Create New Files and Directories)</h1>
+<h2 id="mkdir---make-directory">mkdir - MaKe DIRectory</h2>
+<h2 id="touch---time-of-use-change-we-wont-use-this-much">touch - Time
+Of Use CHange (we won't use this much)</h2>
+<h1 id="bash-introduction-modify-files-and-directories">Bash
+Introduction (Modify Files and Directories)</h1>
+<h2 id="cp---copy">cp - CoPy</h2>
+<h3 id="cp--r">cp -r</h3>
+<h3 id="scp">scp</h3>
+<h2 id="mv---move">mv - MoVe</h2>
+<h2 id="rm---remove">rm - ReMove</h2>
+<h3 id="rmdir">rmdir</h3>
+<h3 id="rm--rf">rm -rf</h3>
+<h3 id="gio-trash">gio trash</h3>
+<h1 id="bash-introduction-editing-files-including-code">Bash
+Introduction (Editing Files including Code)</h1>
+<h2 id="nano---simplest-to-use-but-offers-fewest-features">nano -
+simplest to use, but offers fewest features</h2>
+<h2 id="emacs---arguably-most-configurable-and-extensible">emacs -
+arguably most configurable and extensible</h2>
+<h3
+id="takes-time-to-find-and-configure-modes-capabilities-to-your-workflow">takes
+time to find and configure "modes" capabilities to your workflow</h3>
+<h2 id="vim---arguably-most-efficient-to-make-edits-with">vim - arguably
+most efficient to make edits with</h2>
+<h3 id="takes-time-to-learn-features-motions-verbs">takes time to learn
+features "motions" / verbs</h3>
+<h1 id="c-introduction-hello-world">C Introduction (Hello, World!)</h1>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode java"><code class="sourceCode java"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">public</span> <span class="kw">class</span> Main <span class="op">{</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">main</span><span class="op">(</span><span class="bu">String</span><span class="op">[]</span> args<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="bu">System</span><span class="op">.</span><span class="fu">out</span><span class="op">.</span><span class="fu">println</span><span class="op">(</span><span class="st">&quot;Hello, World!&quot;</span><span class="op">);</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<div class="sourceCode" id="cb4" data-org-language="C"><pre
+class="sourceCode c"><code class="sourceCode c"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main<span class="op">(</span><span class="dt">int</span> argc<span class="op">,</span> <span class="dt">char</span><span class="op">**</span> argv<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  printf<span class="op">(</span><span class="st">&quot;Hello, World!</span><span class="sc">\n</span><span class="st">&quot;</span><span class="op">);</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="op">}</span> </span></code></pre></div>
+</body>
+</html>
