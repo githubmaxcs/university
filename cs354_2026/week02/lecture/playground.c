@@ -27,7 +27,10 @@ int main() {
     int money = -11;
     if ((money = 0)) printf("your account is empty\n");
     else if(money < 0) printf("you are in debt\n");
-    else printf("you're rich\n");
+    else printf("you're rich\n\n");
+
+    char course[6] = "CS354";
+    if( course[5] ) printf("true"); else printf("false");
 
     return 0;
 }

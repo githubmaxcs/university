@@ -144,6 +144,9 @@ if ((money = 0)) printf("your account is empty\n");
 else if(money < 0) printf("you are in debt\n");
 else printf("you're rich\n");
 ```
+
+`money = 0` evaulates the variable `money` to `0`, which also evaulates to be false.
+
 Like boolean values, character values are also just integers:
 
 ```C
@@ -187,3 +190,44 @@ Possible results of writing beyond the bounds of an array:
 - corrupts memory that is being used for something else (😳 yikes!)
 - Segmentation Fault: crash from attempt to access restricted memory
 
+### C Introduction (c-strings)
+
+c-strings are character arrays terminated by a \0 character. Don’t forget this when computing the memory needed for an c-string.
+
+```C
+char course[6] = "CS354";
+if( course[5] ) printf("true"); else printf("false");
+```
+
+You can read in c-strings from the user using gest, scanf, or fgets.
+
+```C
+size_t bufferSize = 10;
+char buffer[bufferSize];
+prinf("Enter a string (to be read with gets): ");
+gets(buffer);
+prinf("Enter a string (to be read with scanf): ");
+scanf("%9s",buffer);
+prinf("Enter a string (to be read with fgets): ");
+fgets(buffer, bufferSize, stdin)
+```
+
+In this course we'll mostly use `fgets`.
+
+Tracking versus computing the length of a string array:
+
+```C
+char string[6] = "cs354";
+printf("%s has (strlen) length %lu\n", string, strlen(string));
+printf("%s has (sizeof) length %lu\n", string, sizeof(string)/sizeof(char));
+```
+
+### C Pointers (Basics Operators)
+
+Every variable can be associated with a virtual memory address.
+
+```C
+int x = 123;
+printf("value of x: %d\n", x);
+printf("the memory address of x: %p\n", &x); // & operator gets address
+```
