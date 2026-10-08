@@ -1,6 +1,6 @@
 # Introduction
 
-## Lecture 02 (2026-09-03)
+## Lecture 02 (Week of 2026-09-03)
 
 Note: Obtain the course contents in [GitHub](https://git.doit.wisc.edu/DAHL/cs354-outlines/-/tree/main?ref_type=heads). 
 

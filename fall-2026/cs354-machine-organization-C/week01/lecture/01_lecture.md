@@ -1,6 +1,6 @@
 # Introduction
 
-## Lecture 01 (2026-09-03)
+## Lecture 01 (Week of 2026-09-03)
 
 Note: I've copied the html file from the lecture notes in [GitHub](https://git.doit.wisc.edu/DAHL/cs354-outlines/-/tree/main?ref_type=heads). But I have not updated it as I have for this MarkDown. The html can serve as a blank template when looking back through material.
 
